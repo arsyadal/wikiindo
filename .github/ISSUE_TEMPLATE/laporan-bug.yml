@@ -1,0 +1,48 @@
+name: Laporan bug
+description: Laporkan masalah yang dapat diulang di WikiIndo
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Isu ini dapat dilihat publik. Jangan cantumkan kata sandi, nomor identitas,
+        alamat atau kontak pribadi, maupun informasi nonpublik. Periksa tangkapan
+        layar atau contoh sebelum mengunggahnya.
+  - type: textarea
+    id: terjadi
+    attributes:
+      label: Apa yang terjadi?
+      description: Jelaskan masalah yang Anda temui.
+    validations:
+      required: true
+  - type: textarea
+    id: harapan
+    attributes:
+      label: Apa yang Anda harapkan terjadi?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduksi
+    attributes:
+      label: Langkah untuk mengulanginya
+      description: Tulis langkah berurutan, dimulai dari halaman yang dibuka.
+      placeholder: |
+        1. Buka ...
+        2. Pilih ...
+        3. Amati ...
+    validations:
+      required: true
+  - type: input
+    id: halaman
+    attributes:
+      label: URL halaman terkait
+      placeholder: https://...
+    validations:
+      required: false
+  - type: textarea
+    id: lingkungan
+    attributes:
+      label: Peramban dan perangkat
+      description: Cantumkan versi peramban dan jenis perangkat jika diketahui.
+    validations:
+      required: false

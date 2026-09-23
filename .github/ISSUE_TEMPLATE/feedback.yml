@@ -1,0 +1,24 @@
+name: Kritik atau saran
+description: Sampaikan masukan tentang WikiIndo
+title: "[Kritik/Saran] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Isu ini dapat dilihat publik. Jangan cantumkan kata sandi, nomor identitas,
+        alamat atau kontak pribadi, maupun informasi nonpublik.
+  - type: textarea
+    id: masukan
+    attributes:
+      label: Kritik atau saran
+      description: Jelaskan bagian yang perlu diperbaiki atau usulan Anda.
+      placeholder: Tuliskan masukan yang spesifik agar dapat ditindaklanjuti.
+    validations:
+      required: true
+  - type: textarea
+    id: konteks
+    attributes:
+      label: Konteks tambahan
+      description: Sebutkan halaman atau bagian terkait jika membantu.
+    validations:
+      required: false

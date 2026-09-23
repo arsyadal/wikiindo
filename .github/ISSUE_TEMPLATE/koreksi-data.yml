@@ -1,0 +1,41 @@
+name: Koreksi data pejabat, instansi, atau LHKPN
+description: Laporkan kekeliruan data beserta sumber publik yang mendukung koreksi
+title: "[Koreksi Data] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Isu ini dapat dilihat publik. Kirim hanya informasi yang sudah tersedia
+        di sumber publik. Jangan cantumkan kata sandi, nomor identitas, alamat
+        atau kontak pribadi, maupun informasi nonpublik.
+  - type: textarea
+    id: catatan
+    attributes:
+      label: Catatan atau periode yang perlu dikoreksi
+      description: Sebutkan pejabat atau instansi dan periode laporan jika relevan.
+      placeholder: Nama catatan dan periode yang terkait.
+    validations:
+      required: true
+  - type: textarea
+    id: kesalahan
+    attributes:
+      label: Bagian yang keliru dan koreksi yang diusulkan
+      description: Jelaskan informasi yang ada dan koreksi yang didukung sumber.
+    validations:
+      required: true
+  - type: input
+    id: sumber
+    attributes:
+      label: URL sumber publik
+      description: Berikan tautan langsung ke dokumen atau halaman sumber.
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: tanggal-sumber
+    attributes:
+      label: Tanggal sumber atau tanggal akses
+      description: Isi tanggal terbit/berlaku yang tercantum, atau tanggal Anda mengakses sumber.
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
