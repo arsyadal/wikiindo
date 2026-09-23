@@ -1,4 +1,4 @@
 ---
-nama: Kementerian Keuangan Republik Indonesia
+nama: Presidensi Republik Indonesia
 sumber: https://setkab.go.id/profil-kabinet/
 ---

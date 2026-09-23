@@ -1,15 +1,19 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
 const links = [
-  { href: "#tentang", label: "Tentang" },
-  { href: "#data", label: "Data" },
-  { href: "#sumber", label: "Sumber" },
-  { href: "#kebutuhan", label: "Kebutuhan & Donasi" },
-  { href: "#komunitas", label: "Terbuka untuk umum" },
+  { href: "/", label: "Beranda" },
+  { href: "/kabinet", label: "Data Kabinet" },
+  { href: "/changelog", label: "Changelog" },
+  { href: "/#tentang", label: "Tentang" },
+  { href: "/#data", label: "Fokus Data" },
+  { href: "/#sumber", label: "Sumber" },
+  { href: "/#kebutuhan", label: "Kebutuhan & Donasi" },
+  { href: "/#komunitas", label: "Terbuka untuk umum" },
 ];
 
 export function MobileMenu() {
@@ -35,13 +39,13 @@ export function MobileMenu() {
           <nav className="mobile-dialog-nav" aria-label="Navigasi utama">
             {links.map((link) => (
               <Dialog.Close asChild key={link.href}>
-                <a href={link.href}>{link.label}</a>
+                <Link href={link.href}>{link.label}</Link>
               </Dialog.Close>
             ))}
             <Dialog.Close asChild>
-              <a className={buttonVariants({ variant: "red" })} href="#data">
-                Lihat fokus data
-              </a>
+              <Link className={buttonVariants({ variant: "red" })} href="/kabinet">
+                Lihat Data Kabinet
+              </Link>
             </Dialog.Close>
           </nav>
         </Dialog.Content>

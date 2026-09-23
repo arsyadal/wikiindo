@@ -1,41 +1,62 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import { findInstansi, loadContent } from "@/lib/content";
+import { ArrowLeft } from "lucide-react";
+import { loadContent } from "@/lib/content";
+import { KabinetView } from "./kabinet-view";
 
 export const metadata: Metadata = {
   title: "Data Kabinet | WikiIndo",
-  description: "Catatan pejabat, instansi, dan LHKPN yang sudah memiliki rujukan sumber.",
+  description: "Daftar resmi pejabat, instansi, dan LHKPN Kabinet Pemerintahan Indonesia dengan rujukan sumber terverifikasi.",
 };
-
-const tanggalFormatter = new Intl.DateTimeFormat("id-ID", { dateStyle: "long", timeZone: "UTC" });
 
 export default async function KabinetPage() {
   const content = await loadContent();
   const empty = content.pejabat.length === 0 && content.instansi.length === 0;
 
   return (
-    <div className="min-h-screen bg-white text-[#0f0f0f]">
+    <div className="min-h-screen bg-white text-[#0f0f0f] flex flex-col justify-between">
       <a className="skip-link" href="#konten">Lewati ke konten</a>
-      <header className="border-b border-[#d6d6d6]">
-        <div className="container flex min-h-[76px] items-center justify-between gap-4">
-          <Link className="wordmark" href="/" aria-label="WikiIndo, beranda">
-            <span className="wordmark-mark" aria-hidden="true" />WikiIndo
+      
+      {/* Header */}
+      <header className="sticky top-0 z-20 bg-white/95 border-b border-[#e5e5e5] backdrop-blur-md">
+        <div className="container flex h-[76px] items-center justify-between gap-4">
+          <div className="flex items-center gap-6">
+            <Link className="wordmark" href="/" aria-label="WikiIndo, beranda">
+              <span className="wordmark-mark" aria-hidden="true" />
+              WikiIndo
+            </Link>
+            <nav className="hidden sm:flex items-center gap-5 text-sm font-medium text-[#444]" aria-label="Navigasi sekunder">
+              <Link href="/" className="hover:text-[#cc0000] transition-colors">Beranda</Link>
+              <span className="text-[#a60000]">Kabinet</span>
+              <Link href="/changelog" className="hover:text-[#cc0000] transition-colors">Changelog</Link>
+            </nav>
+          </div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[#606060] hover:text-[#0f0f0f] transition-colors"
+          >
+            <ArrowLeft size={14} aria-hidden="true" />
+            <span>Kembali ke Beranda</span>
           </Link>
-          <span className="text-sm text-[#444]">Data kabinet</span>
         </div>
       </header>
-      <main id="konten" className="container py-12 sm:py-20">
-        <p className="mb-4 text-xs font-bold uppercase tracking-wider text-[#444]">Catatan bersumber</p>
-        <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">Data kabinet Indonesia</h1>
-        <p className="mt-5 max-w-2xl text-base leading-7 text-[#444]">
-          Hanya catatan dengan tautan sumber yang ditampilkan. Ketiadaan catatan bukan berarti laporan atau informasi publik tidak ada.
-        </p>
+
+      {/* Main Content */}
+      <main id="konten" className="container flex-1 py-10 sm:py-16">
+        <div className="max-w-4xl">
+          <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#a60000]">Catatan bersumber</p>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-5xl text-[#0f0f0f]">
+            Kabinet Merah Putih
+          </h1>
+          <p className="mt-4 text-base leading-7 text-[#606060]">
+            Daftar resmi Presiden, Wakil Presiden, Menteri, Pejabat Setingkat Menteri, dan Sekretaris Kabinet Republik Indonesia bersumber dari rujukan publik Sekretariat Kabinet (<a href="https://setkab.go.id/profil-kabinet/" target="_blank" rel="noopener noreferrer" className="text-[#065fd4] hover:underline">setkab.go.id</a>).
+          </p>
+        </div>
 
         {empty ? (
-          <section className="mt-12 max-w-2xl border-t border-[#999] py-8" aria-labelledby="status-data">
+          <section className="mt-12 max-w-2xl border-t border-[#e5e5e5] py-8" aria-labelledby="status-data">
             <h2 id="status-data" className="text-2xl font-bold">Belum ada catatan terverifikasi</h2>
-            <p className="mt-3 leading-7 text-[#444]">
+            <p className="mt-3 leading-7 text-[#606060]">
               Data pejabat, instansi, dan LHKPN belum dimasukkan ke kumpulan data ini. Kami tidak menampilkan nama atau angka tanpa rujukan.
             </p>
             <Link className="mt-5 inline-flex min-h-11 items-center font-medium text-[#a60000] underline underline-offset-4" href="/">
@@ -43,61 +64,26 @@ export default async function KabinetPage() {
             </Link>
           </section>
         ) : (
-          <>
-            {content.pejabat.length > 0 && (
-              <section className="mt-14" aria-labelledby="daftar-pejabat">
-                <h2 id="daftar-pejabat" className="mb-6 text-2xl font-bold">Pejabat</h2>
-                <ul className="divide-y divide-[#d6d6d6] border-t border-[#999]">
-                  {content.pejabat.map((pejabat) => {
-                    const instansi = findInstansi(content, pejabat.instansi)!;
-                    const reports = content.lhkpn.filter((report) => report.pejabat === pejabat.id);
-                    return (
-                      <li key={pejabat.id} className="py-7">
-                        <h3 className="text-xl font-bold">{pejabat.nama}</h3>
-                        <p className="mt-1 text-[#444]">{pejabat.jabatan}, {instansi.nama}</p>
-                        {pejabat.mulai && (
-                          <p className="mt-1 text-sm text-[#555]">
-                            Mulai menjabat: {tanggalFormatter.format(new Date(`${pejabat.mulai}T00:00:00Z`))}
-                          </p>
-                        )}
-                        {pejabat.isi && <div className="mt-3 max-w-3xl space-y-3 leading-7"><Markdown>{pejabat.isi}</Markdown></div>}
-                        <a className="mt-3 inline-flex min-h-11 items-center text-[#a60000] underline underline-offset-4" href={pejabat.sumber} target="_blank" rel="noopener noreferrer">Sumber jabatan</a>
-                        {reports.length > 0 && (
-                          <div className="mt-5">
-                            <h4 className="font-semibold">Laporan LHKPN</h4>
-                            <ul className="mt-2 space-y-3">
-                              {reports.map((report) => (
-                                <li key={report.periode}>
-                                  <a className="inline-flex min-h-11 items-center text-[#a60000] underline underline-offset-4" href={report.sumber} target="_blank" rel="noopener noreferrer">Periode {report.periode}, lihat sumber</a>
-                                  {report.isi && <div className="max-w-3xl space-y-3 leading-7"><Markdown>{report.isi}</Markdown></div>}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            )}
-            {content.instansi.length > 0 && (
-              <section className="mt-14" aria-labelledby="daftar-instansi">
-                <h2 id="daftar-instansi" className="mb-6 text-2xl font-bold">Instansi</h2>
-                <ul className="divide-y divide-[#d6d6d6] border-t border-[#999]">
-                  {content.instansi.map((instansi) => (
-                    <li key={instansi.id} className="py-6">
-                      <h3 className="text-xl font-bold">{instansi.nama}</h3>
-                      {instansi.isi && <div className="mt-3 max-w-3xl space-y-3 leading-7"><Markdown>{instansi.isi}</Markdown></div>}
-                      <a className="mt-3 inline-flex min-h-11 items-center text-[#a60000] underline underline-offset-4" href={instansi.sumber} target="_blank" rel="noopener noreferrer">Sumber instansi</a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-          </>
+          <KabinetView content={content} />
         )}
       </main>
+
+      {/* Footer */}
+      <footer className="site-footer border-t border-[#e5e5e5] mt-20">
+        <div className="container footer-inner">
+          <Link className="wordmark" href="/" aria-label="WikiIndo, kembali ke beranda">
+            <span className="wordmark-mark" aria-hidden="true" />
+            WikiIndo
+          </Link>
+          <p className="footer-note">Buat Indonesia Lebih Transparan.</p>
+          <nav className="footer-nav" aria-label="Navigasi footer">
+            <Link href="/">Beranda</Link>
+            <Link href="/kabinet">Data Kabinet</Link>
+            <Link href="/changelog">Changelog</Link>
+            <a href="https://github.com/wikilhkpn/wikiindo" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </nav>
+        </div>
+      </footer>
     </div>
   );
 }

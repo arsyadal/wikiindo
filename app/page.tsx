@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowDownRight, ArrowUpRight, FileText } from "lucide-react";
 import { MobileMenu } from "@/components/mobile-menu";
 import { buttonVariants } from "@/components/ui/button";
@@ -58,14 +59,15 @@ export default function Home() {
           </a>
           <nav className="desktop-nav" aria-label="Navigasi utama">
             <a className="nav-link" href="#tentang">Tentang</a>
-            <a className="nav-link" href="#data">Data</a>
+            <Link className="nav-link" href="/kabinet">Data Kabinet</Link>
             <a className="nav-link" href="#sumber">Sumber</a>
             <a className="nav-link" href="#kebutuhan">Kebutuhan &amp; Donasi</a>
             <a className="nav-link" href="#komunitas">Terbuka untuk umum</a>
+            <Link className="nav-link" href="/changelog">Changelog</Link>
           </nav>
-          <a className={`${buttonVariants({ variant: "red" })} header-cta`} href="#data">
-            Telusuri fokus data <ArrowDownRight size={16} aria-hidden="true" />
-          </a>
+          <Link className={`${buttonVariants({ variant: "red" })} header-cta`} href="/kabinet">
+            Lihat Data Kabinet <ArrowDownRight size={16} aria-hidden="true" />
+          </Link>
           <MobileMenu />
         </div>
       </header>
@@ -80,9 +82,9 @@ export default function Home() {
                 WikiIndo dirancang untuk menata informasi pejabat, instansi, riwayat jabatan, dan laporan LHKPN, beserta konteks serta rujukan sumbernya.
               </p>
               <div className="hero-actions">
-                <a className={buttonVariants({ variant: "red" })} href="#data">
-                  Lihat fokus data <ArrowDownRight size={17} aria-hidden="true" />
-                </a>
+                <Link className={buttonVariants({ variant: "red" })} href="/kabinet">
+                  Lihat Data Kabinet <ArrowDownRight size={17} aria-hidden="true" />
+                </Link>
                 <a className={buttonVariants({ variant: "outline" })} href="#sumber">
                   Cara kami mencatat sumber
                 </a>
@@ -92,8 +94,8 @@ export default function Home() {
 
             <aside className="record-board" aria-label="Contoh struktur informasi WikiIndo, bukan data pejabat">
               <div className="record-topline">
-                <span className="record-label">Kerangka informasi</span>
-                <span className="record-status">Belum berisi data</span>
+                <span className="record-label">Basis Data Kabinet</span>
+                <span className="record-status">63 Pejabat Aktif</span>
               </div>
               <h2 className="record-title">Rekam jejak publik</h2>
               <p className="record-caption">Susunan informasi yang akan membantu pembaca melihat konteks dan asal data.</p>
@@ -263,8 +265,10 @@ export default function Home() {
           </a>
           <p className="footer-note">Buat Indonesia Lebih Transparan.</p>
           <nav className="footer-nav" aria-label="Navigasi footer">
+            <Link href="/">Beranda</Link>
+            <Link href="/kabinet">Data Kabinet</Link>
+            <Link href="/changelog">Changelog</Link>
             <a href="#tentang">Tentang</a>
-            <a href="#data">Fokus data</a>
             <a href="#sumber">Sumber</a>
             <a href="#komunitas">Terbuka untuk umum</a>
             <a href="#kebutuhan">Kebutuhan &amp; Donasi</a>

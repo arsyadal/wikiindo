@@ -1,4 +1,4 @@
 ---
-nama: Kementerian Keuangan Republik Indonesia
+nama: Badan Intelijen Negara
 sumber: https://setkab.go.id/profil-kabinet/
 ---
