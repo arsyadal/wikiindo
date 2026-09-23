@@ -99,6 +99,7 @@ export default async function ChangelogPage() {
             <nav className="hidden sm:flex items-center gap-5 text-sm font-medium text-[#444]" aria-label="Navigasi sekunder">
               <Link href="/" className="hover:text-[#cc0000] transition-colors">Beranda</Link>
               <Link href="/kabinet" className="hover:text-[#cc0000] transition-colors">Kabinet</Link>
+              <Link href="/berita" className="hover:text-[#cc0000] transition-colors">Portal Berita</Link>
               <span className="text-[#a60000]">Changelog</span>
             </nav>
           </div>
@@ -179,6 +180,7 @@ export default async function ChangelogPage() {
           <nav className="footer-nav" aria-label="Navigasi footer">
             <Link href="/">Beranda</Link>
             <Link href="/kabinet">Data Kabinet</Link>
+            <Link href="/berita">Portal Berita</Link>
             <Link href="/changelog">Changelog</Link>
             <a href="https://github.com/wikilhkpn/wikiindo" target="_blank" rel="noopener noreferrer">GitHub</a>
           </nav>

@@ -60,6 +60,7 @@ export default function Home() {
           <nav className="desktop-nav" aria-label="Navigasi utama">
             <a className="nav-link" href="#tentang">Tentang</a>
             <Link className="nav-link" href="/kabinet">Data Kabinet</Link>
+            <Link className="nav-link" href="/berita">Portal Berita</Link>
             <a className="nav-link" href="#sumber">Sumber</a>
             <a className="nav-link" href="#kebutuhan">Kebutuhan &amp; Donasi</a>
             <a className="nav-link" href="#komunitas">Terbuka untuk umum</a>
@@ -267,6 +268,7 @@ export default function Home() {
           <nav className="footer-nav" aria-label="Navigasi footer">
             <Link href="/">Beranda</Link>
             <Link href="/kabinet">Data Kabinet</Link>
+            <Link href="/berita">Portal Berita</Link>
             <Link href="/changelog">Changelog</Link>
             <a href="#tentang">Tentang</a>
             <a href="#sumber">Sumber</a>

@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 const links = [
   { href: "/", label: "Beranda" },
   { href: "/kabinet", label: "Data Kabinet" },
+  { href: "/berita", label: "Portal Berita" },
   { href: "/changelog", label: "Changelog" },
   { href: "/#tentang", label: "Tentang" },
   { href: "/#data", label: "Fokus Data" },

@@ -28,6 +28,7 @@ export default async function KabinetPage() {
             <nav className="hidden sm:flex items-center gap-5 text-sm font-medium text-[#444]" aria-label="Navigasi sekunder">
               <Link href="/" className="hover:text-[#cc0000] transition-colors">Beranda</Link>
               <span className="text-[#a60000]">Kabinet</span>
+              <Link href="/berita" className="hover:text-[#cc0000] transition-colors">Portal Berita</Link>
               <Link href="/changelog" className="hover:text-[#cc0000] transition-colors">Changelog</Link>
             </nav>
           </div>
@@ -79,6 +80,7 @@ export default async function KabinetPage() {
           <nav className="footer-nav" aria-label="Navigasi footer">
             <Link href="/">Beranda</Link>
             <Link href="/kabinet">Data Kabinet</Link>
+            <Link href="/berita">Portal Berita</Link>
             <Link href="/changelog">Changelog</Link>
             <a href="https://github.com/wikilhkpn/wikiindo" target="_blank" rel="noopener noreferrer">GitHub</a>
           </nav>
